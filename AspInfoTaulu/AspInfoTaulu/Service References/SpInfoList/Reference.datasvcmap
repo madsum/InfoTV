@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c40ef98f-518b-4262-bded-d19fc809a1dc" xmlns="urn:schemas-microsoft-com:xml-dataservicemap">
+  <MetadataSources>
+    <MetadataSource Address="http://tyotilat.espoo.fi/pali/espoo_kaupunkitekniikka/_vti_bin/ListData.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.edmx" MetadataType="Edmx" ID="b61bf7f9-3d33-4c18-9073-73de06351cf3" SourceId="1" SourceUrl="http://tyotilat.espoo.fi/pali/espoo_kaupunkitekniikka/_vti_bin/ListData.svc" />
+  </Metadata>
+  <Extensions />
+  <Parameters />
+</ReferenceGroup>

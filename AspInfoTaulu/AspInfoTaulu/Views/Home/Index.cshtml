@@ -1,0 +1,48 @@
+﻿@model AspInfoTaulu.Models.Data
+
+<html>
+<head>
+<script src="~/Scripts/InfoTauloMain.js" type="text/javascript">    
+</script>
+<link rel="stylesheet" type="text/css" href="~/Content/InfoTaulu.css">
+<title>Käyttäjä syöttää</title>
+</head>
+
+<body>
+<div id ="border">
+<div id = "margine">
+
+<table width ="95%">
+   <tbody>
+        <tr>
+            <td >
+                <img src="~/Images/espoo.bmp" />
+            </td>
+            <td align="right">
+
+            <div text-align: right;">
+            <span class="styling"><script language="JavaScript">
+            document.write("Tänään " + GetDate() + " klo");
+            </script></span>
+            <span id="digitalclock" class="styling"></span>
+            </div>
+            </td>
+        </tr>
+   </tbody>
+</table>
+
+<h3 align="center" style="color:red">@Model.Message</h3> <br />
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Kirjautumistiedot:</h3>
+
+<form method="post" action="/Home/Submit">
+    <label>Käyttäjänimi:</label>
+    <input name="user"  type="text" /><br />
+    <label>Salasana:</label>
+    <input type="password" name="pass"  type="password"/><br/><br />
+    <span  class="form-field-no-caption"><input type="submit" value="Kirjaudu"/></span>
+</form>
+</div>
+</div>
+</body>
+</html>

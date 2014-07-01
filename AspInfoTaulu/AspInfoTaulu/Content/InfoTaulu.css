@@ -1,0 +1,69 @@
+﻿table.MyTable {
+	border-width: 3px;
+	border-spacing: 5px;
+	border-style: outset;
+	border-color: blue;
+	border-collapse: separate;
+	background-color: white;
+    width: 95%;
+}
+table.MyTable th {
+	border-width: thin;
+	padding: 1px;
+	border-style: none;
+	border-color: blue;
+	background-color: rgb(240, 240, 255);
+    height: 50px;
+}
+table.MyTable td {
+	border-width: thin;
+	padding: 1px;
+	border-style: none;
+	border-color: blue;
+	background-color: rgb(240, 240, 255);
+}
+
+label {
+    float: left;
+    width: 20%;
+    text-align: right;
+    margin-right: 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+.form-field-no-caption {
+    margin-left: 20%;
+    padding-left: 0.5em;
+}
+.styling{
+background-color:white;
+color:rgb(0, 0, 255);
+font: bold 25px arial;
+padding: 3px;
+}
+#border {
+    background-repeat:no-repeat;
+    width: auto;
+    height:auto;
+    border:6px double white;
+}
+#margine{
+	margin-top: 10px; 
+	margin-left: 30px; 
+	margin-right: 0px;
+	margin-bottom: 1px;
+}
+
+p.terve
+{
+    text-align:center; 
+    font-family: verdana; 
+    font-size: 30px; 
+    font-weight: bold; 
+    font-style: italic; 
+    color: blue; 
+    line-height: 18px;
+}
+

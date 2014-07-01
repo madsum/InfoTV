@@ -1,0 +1,70 @@
+﻿@model OutlookCalenderFetcher.OutlookCalender
+
+<html>
+<head>
+     @if (@Model == null)
+     { 
+        Response.Redirect("/home/error");
+     }
+<script src="~/Scripts/InfoTauloMain.js" type="text/javascript">    
+</script>
+<link rel="stylesheet" type="text/css" href="~/Content/InfoTaulu.css">
+<title>Kokoukset tänään</title>
+<meta http-equiv="Refresh" content="@Model.RefreshSec; url=Hkokous" />
+<meta name="viewport" content="width=device-width" />
+</head>
+<body>
+<div id = "margine">
+<table width ="95%">
+   <tbody>
+        <tr>
+            <td >
+                <img src="~/Images/espoo.bmp" />
+            </td>
+            <td align="right">
+
+            <div text-align: right;">
+            <span class="styling"><script language="JavaScript">
+            document.write("Tänään " + GetDate() + " klo");
+            </script></span>
+            <span id="digitalclock" class="styling"></span>
+            </div>
+            </td>
+        </tr>
+   </tbody>
+</table>
+
+
+   
+<h1>Kokoukset tänään</h1>
+    <table class="MyTable">
+        <thead>
+            <tr>
+                <th><h3>AIKA</h3></th>
+                <th><h3>AIHE</h3></th>
+                <th><h3>PAIKKA</h3></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (@Model.TodayMeetingList.Count > 0)
+            {
+                for (int i = 0; i < @Model.TodayMeetingList.Count; i++)
+                {
+                    <tr>
+                        <td><h3>@Model.TodayMeetingList[i].Klo</h3></td>
+                        <td><h3>@Model.TodayMeetingList[i].Aihe</h3></td>
+                        <td><h3>@Model.TodayMeetingList[i].Paikka</h3></td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td><h3>Ei kokousia</h3></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
