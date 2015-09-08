@@ -11,6 +11,7 @@ namespace AspInfoTaulu.Models
         public string Area { get; set; }
         public int RefreshSec { get; set; }
         public List<ListItem> ShareList { get; set; }
+
         public Data()
         {
             ShareList = new List<ListItem>();

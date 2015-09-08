@@ -54,6 +54,7 @@ namespace AspInfoTaulu.Controllers
 
             if (RootWebConfig.AppSettings.Settings.Count > 0)
             {
+                /*
                 System.Configuration.KeyValueConfigurationElement EPass =
                 RootWebConfig.AppSettings.Settings["EPass"];
                 if (EPass != null)
@@ -81,7 +82,7 @@ namespace AspInfoTaulu.Controllers
                 {
                     GlobalProperty.AutodiscoverEmail = Email.Value;
                 }
-
+                */
                 System.Configuration.KeyValueConfigurationElement Laturi =
                                     RootWebConfig.AppSettings.Settings["Laturi"];
                 if (Laturi != null)
@@ -126,13 +127,14 @@ namespace AspInfoTaulu.Controllers
 
             if (RootWebConfig.AppSettings.Settings.Count > 0)
             {
+                /*
                 System.Configuration.KeyValueConfigurationElement EPass =
                 RootWebConfig.AppSettings.Settings["EPass"];
                 if (EPass != null)
                 {
                     GlobalProperty.EncryptionPassword = EPass.Value;
                 }
-
+                
                 System.Configuration.KeyValueConfigurationElement LDAP =
                 RootWebConfig.AppSettings.Settings["LDAP"];
                 if (LDAP != null)
@@ -153,6 +155,7 @@ namespace AspInfoTaulu.Controllers
                 {
                     GlobalProperty.AutodiscoverEmail = Email.Value;
                 }
+                */
                 return true;
             }
             else
@@ -302,32 +305,22 @@ namespace AspInfoTaulu.Controllers
             GC.Collect();
             GlobalProperty.Calender = new OutlookCalender();
 
-            GlobalProperty.Calender.Initialize(GlobalProperty.Username, 
-                                                 GlobalProperty.Password, 
-                                                 GlobalProperty.AutodiscoverEmail);
-            
             if (GlobalProperty.Calender.GetAllData())
             {
-                if (GlobalProperty.Calender != null)
-                {
-                    if (GlobalProperty.Calender.TodayMeetingList.Count > 0)
-                    {
-                        GlobalProperty.Calender.RefreshSec = 0;
 
-                        for(int i=0; i<GlobalProperty.Calender.TodayMeetingList.Count; i++)
-                        {
-                            GlobalProperty.Calender.RefreshSec += 10;
-                        }
-                        return View(GlobalProperty.Calender);
-                    }
-                    else
+                if (GlobalProperty.Calender.TodayMeetingList.Count > 0)
+                {
+                    GlobalProperty.Calender.RefreshSec = 0;
+
+                    for (int i = 0; i < GlobalProperty.Calender.TodayMeetingList.Count; i++)
                     {
-                        return RedirectToAction("HKokous", "Home");
+                        GlobalProperty.Calender.RefreshSec += 10;
                     }
+                    return View(GlobalProperty.Calender);
                 }
                 else
                 {
-                    return RedirectToAction("Error", "Home");
+                    return RedirectToAction("HKokous", "Home");
                 }
             }
             else
@@ -340,29 +333,22 @@ namespace AspInfoTaulu.Controllers
         {
             if (GlobalProperty.Calender != null)
             {
-                if (GlobalProperty.Calender != null)
+                if (GlobalProperty.Calender.TomorrowMeetingList.Count > 0)
                 {
-                    if (GlobalProperty.Calender.TomorrowMeetingList.Count > 0)
-                    {
-                        GlobalProperty.Calender.RefreshSec = 0;
+                    GlobalProperty.Calender.RefreshSec = 0;
 
-                        for (int i = 0; i < GlobalProperty.Calender.TomorrowMeetingList.Count; i++)
-                        {
-                            GlobalProperty.Calender.RefreshSec += 10;
-                        }
-                        return View(GlobalProperty.Calender);
-                    }
-                    else
+                    for (int i = 0; i < GlobalProperty.Calender.TomorrowMeetingList.Count; i++)
                     {
-                        return RedirectToAction("SPList", "Home");
+                        GlobalProperty.Calender.RefreshSec += 10;
                     }
+                    return View(GlobalProperty.Calender);
                 }
                 else
                 {
-                    return RedirectToAction("Error", "Home");
+                    return RedirectToAction("SPList", "Home");
                 }
             }
-            else 
+            else
             {
                 return RedirectToAction("Error", "Home");
             }
@@ -389,7 +375,12 @@ namespace AspInfoTaulu.Controllers
                 {
                     return RedirectToAction("Error", "Home");
                 }
+                GlobalProperty.Username = user;
+                GlobalProperty.Password = pass;
                 GlobalProperty.Authenticated = true;
+
+                return RedirectToAction("Tervetuloa", "Home");
+                /*
                 if (Init(user, pass))
                 {
                      return RedirectToAction("Tervetuloa", "Home");
@@ -400,6 +391,7 @@ namespace AspInfoTaulu.Controllers
                     GlobalProperty.Authenticated = false;
                     return RedirectToAction(actionName: "Index", routeValues: new { msg = mData.Message });
                 }
+                */
             }
             else
             {
@@ -408,11 +400,12 @@ namespace AspInfoTaulu.Controllers
               return RedirectToAction(actionName: "Index", routeValues: new { msg = mData.Message });
             }
         }
-
+        /*
         private bool Init(string userName, string password)
         {
             GlobalProperty.Username = userName;
             GlobalProperty.Password = password;
+            
             if(String.IsNullOrEmpty(GlobalProperty.AutodiscoverEmail))
             {
                 string email = GetEamil(userName);
@@ -425,9 +418,10 @@ namespace AspInfoTaulu.Controllers
                     GlobalProperty.AutodiscoverEmail = email;
                 }
             }
+             
             return true;
         }
-       
+       */
         public bool IsAuthenticated(string userName, string password)
         {
             string domainAndUsername = GlobalProperty.Domain + @"\" + userName;

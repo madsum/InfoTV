@@ -1,0 +1,7 @@
+<appSettings>  
+  <!-- all meeting room name and email address -->
+  <add key="Laturi" value="TilaMikkelaEKA_Nh2064@espoo.fi"/>
+  <add key="Pikku paristo" value="TilaMikkelaEKA_Nh_Pikku_Paristo@espoo.fi"/>
+  <add key="Iso paristo" value="TilaMikkelaEKA_Nh2071@espoo.fi"/>
+  <add key="Akku" value="TilaMikkelaEKA_Nh_Akku@espoo.fi"/>
+</appSettings>

@@ -23,32 +23,20 @@ namespace OutlookCalenderFetcher
     {
         public List<Meeting> TodayMeetingList {get; set;}
         public List<Meeting> TomorrowMeetingList{get; set;}
-        private string Username = null;
-        private string Passwored = null;
-        private string AutodiscoverEmail = null;
+        //private string Username = null;
+        //private string Passwored = null;
+        //private string AutodiscoverEmail = null;
         public string ErrorMsg = null;
         public  int RefreshSec { get; set; }
 
         public OutlookCalender()
         {
-
-        }
-
-        public void Initialize(string username, string password, string autodiscoverEmail)
-        {
-            Username = username;
-            Passwored = password;
-            AutodiscoverEmail = autodiscoverEmail;
             TodayMeetingList = new List<Meeting>();
             TomorrowMeetingList = new List<Meeting>();
-            //ContactDic = new Dictionary<string, string>();
-            //FilteredContact = new Dictionary<string, string>();
         }
     
         public bool GetAllData()
         {
-            //Dictionary<string, string>.KeyCollection keys = GlobalProperty.MeetinRooms.Keys;
-
             try
             {
                 foreach (KeyValuePair<string, string> MeetingKeyVal in GlobalProperty.MeetinRooms)
@@ -87,7 +75,7 @@ namespace OutlookCalenderFetcher
                 TomorrowMeetingList = TomorrowMeetingList.OrderBy(x => x.KloDate).ToList();
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 return false;
             }
@@ -180,10 +168,12 @@ namespace OutlookCalenderFetcher
         private bool GetAllMeets(string email, MeetingTime mTime)
          {
              ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010);
-             service.Credentials = new WebCredentials(Username, Passwored, GlobalProperty.Domain);
+             service.Credentials = new WebCredentials(GlobalProperty.Username, 
+                                                      GlobalProperty.Password, 
+                                                      GlobalProperty.Domain);
              try
              {
-                service.AutodiscoverUrl(AutodiscoverEmail, RedirectionUrlValidationCallback);
+                service.Url = new Uri(GlobalProperty.AutodiscoverUrl);
                 Mailbox principle = new Mailbox(email);
 
                 if (mTime == MeetingTime.Today)
@@ -222,8 +212,9 @@ namespace OutlookCalenderFetcher
                     }
                 }
              }
-             catch (System.Exception )
+             catch (System.Exception e )
              {
+                 Debug.WriteLine("error: "+e.Message);
                  return false;
              }
              return true;
@@ -255,9 +246,6 @@ namespace OutlookCalenderFetcher
             public static string Pikku2 = " Pikkuparisto";
             public static string Iso = "Iso-Paristo";
             public static string Akku = "Akku";
-            // all Mankka room
-            public static string LogPieni = "Mankkaa LOG Pieni";
-            public static string LogIso = "Mankkaa LOG Iso";
         }
     }
 
